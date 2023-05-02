@@ -1,8 +1,9 @@
-'use client'
-
 import Link from "next/link"
+import { useAppStore } from "../stores/app"
 
 export default function Header() {
+
+    const store = useAppStore()
 
     return (
         <header className="w-full flex flex-col sm:flex-row items-center p-3 px-2 sm:px-8 text-white bg-slate-800">
@@ -25,6 +26,12 @@ export default function Header() {
                     Problem 3
                 </Link>
             </nav>
+
+            <select value={store.decade} onChange={(e) => store.setDecade(parseInt(e.target.value))}>
+                {store.decades.map((decade) => (
+                    <option key={decade} value={decade}>{decade}</option>
+                ))}
+            </select>
 
         </header>
     )
