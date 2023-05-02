@@ -58,6 +58,13 @@ let layer_markers = L.layerGroup([])
 let layer_tiles: any
 let control_layers
 
+let windowResizeEvent = debounce( () => {
+        console.log("debounce map")
+        map.invalidateSize()
+}, 200)
+
+let resizeListener = windowResizeEvent.bind(this)
+
 export default function MapLeaftlet({mapData = [], mapFilters = []}:any) {
 
     const store = useAppStore()
@@ -73,6 +80,7 @@ export default function MapLeaftlet({mapData = [], mapFilters = []}:any) {
         // UNMOUNT
         return () => {
             map.remove()
+            window.removeEventListener('resize', resizeListener)
         }
 
     }, [])
@@ -94,7 +102,7 @@ export default function MapLeaftlet({mapData = [], mapFilters = []}:any) {
 }
 
 function initMap() {
-    mapEl = document.getElementById('map')  //mapElement //
+    mapEl = document.getElementById('map')
 
     layer_tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -113,12 +121,15 @@ function initMap() {
 
     map.on('click', onMapClick)
 
+    window.addEventListener('resize', resizeListener)
+
     // RESIZE LISTENER
+    /*
     window.addEventListener("resize", debounce( () => {
         console.log("debounce map")
         map.invalidateSize()
     }, 200))
-
+    */
 
 }
 

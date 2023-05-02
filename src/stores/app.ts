@@ -11,7 +11,8 @@ export interface AppState {
     decade: number | undefined;
     decades: any[];
     setDecade: (decade: number) => void;
-
+    riskFactorKeys: () => string[];
+    tableData: () => RISKAI_DATA[];
     dataProcess_assetNames: (lat: number, long: number) => string[];
     dataProcess_businessCats: (lat: number, long: number) => string[];
     dataProcess_avgRiskRating: (lat: number, long: number) => number;
@@ -103,19 +104,6 @@ export const useAppStore = create<AppState>()((set, get) => ({
             }
         })
 
-        //console.log("filterTheData work ios %O", work)
-
-        /*
-        work = get().data.filter( x =>
-            x.year === get().decade
-        )
-        */
-        
-        /*
-        TODO: Ideally this func has a return so we can call on it directly in any component,
-        however, have not been able to make good reactivity with this method. Instead we apply
-        the filtered data to another state element, and that is what we watch for updates and pull, throughout the app.
-        */
         return work
 
     },
@@ -160,5 +148,21 @@ export const useAppStore = create<AppState>()((set, get) => ({
         return avgResult
     },
 
+    riskFactorKeys() {
+        if (get().data && get().data.length > 0) {
+            let work = Object.keys(get().data.reduce((accumulator, item) => {
+                if (Object.keys(item.riskFactors).length > Object.keys(accumulator.riskFactors).length) {
+                    return item
+                }
+                return accumulator
+            }).riskFactors)
+            return work
+        }
+        return []
+    },
+
+    tableData() {
+        return get().data.filter((x) => x.year === get().decade)
+    }
 
 }))

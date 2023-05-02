@@ -1,0 +1,5 @@
+.customAGGridStyles :global(.ag-paging-panel) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

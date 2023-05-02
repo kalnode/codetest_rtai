@@ -27,7 +27,7 @@ export default function Problem1() {
         // @ts-ignore
         //(state) => state.data, (oldData,newData) => doExtraProcessing(oldData,newData)
         //(state) => state.data, (state) => store.filterTheData
-        (state) => state.data, (state) => state.filterTheData
+        //(state) => state.data, (state) => state.filterTheData
     )
 
     /*
