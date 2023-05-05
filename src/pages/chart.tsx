@@ -32,9 +32,9 @@ export default function PageChart() {
                             id="businessCategory"
                             className="bg-gray-50 border border-gray-300 w-full text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-50"
                             value={store.selectedBusinessCategory ?? ''}
-                            onChange={(e) => store.setBusinessCategory(e.target.value)}>
+                            onChange={(e) => store.setBusinessCat(e.target.value)}>
                             {
-                                store.businessCategories()?.map((asset:any) => (
+                                store.businessCats()?.map((asset:any) => (
                                     <option key={asset} value={asset}>{asset}</option>
                                 ))
                             }
