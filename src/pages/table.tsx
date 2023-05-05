@@ -1,13 +1,13 @@
 'use client'
 
 import dynamic from "next/dynamic"
-import { useAppStore, RISKAI_DATA} from "../stores/app"
+import { useAppStore, RTAI_DATA} from "../stores/app"
 import { useEffect, useMemo, useState } from "react"
 const Table = dynamic( () => import('../components/Table'), { ssr: false })
 
-export default function Problem2() {
+export default function PageTable() {
 
-    const [tableData, setTableData] = useState([] as RISKAI_DATA[])
+    const [tableData, setTableData] = useState([] as RTAI_DATA[])
     
     const store = useAppStore()
 
@@ -33,7 +33,6 @@ export default function Problem2() {
 
     return (
         <main className="w-full h-full flex flex-col items-center justify-between text-black overflow-auto">
-            <h1>Problem 2</h1>
             <Table columns={colDef} rowData={tableData} />
         </main>
     )

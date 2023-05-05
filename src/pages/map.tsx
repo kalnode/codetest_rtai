@@ -2,7 +2,7 @@ import dynamic from "next/dynamic"
 import { useAppStore } from "../stores/app"
 const Map = dynamic( () => import('../components/Map'), { ssr: false })
 
-export default function Problem1() {
+export default function PageMap() {
 
     const store = useAppStore()
 

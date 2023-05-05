@@ -1,22 +1,22 @@
-import { RISKAI_DATA } from "../../stores/app"
+import { RTAI_DATA } from "../../stores/app"
 import { parse } from 'csv-parse'
 import fs from 'fs/promises'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface data {
-    data: RISKAI_DATA[]
+    data: RTAI_DATA[]
 }
 
 async function fetchData() {
 
-    const rows: RISKAI_DATA[] = []
+    const rows: RTAI_DATA[] = []
     const csv = await fs.readFile('./assets/rtai_data.csv')
     const parser = parse(csv, { columns: true, skip_empty_lines: true })
 
     parser.on('readable', () => {
         let row
         while ((row = parser.read())) {
-            const rowData: RISKAI_DATA = {
+            const rowData: RTAI_DATA = {
                 assetName: row["Asset Name"],
                 lat: parseFloat(row["Lat"]),
                 long: parseFloat(row["Long"]),
@@ -29,7 +29,7 @@ async function fetchData() {
         }
     })
 
-    return new Promise<RISKAI_DATA[]>((resolve, reject) => {
+    return new Promise<RTAI_DATA[]>((resolve, reject) => {
         parser.on("end", () => {
             resolve(rows)
         })

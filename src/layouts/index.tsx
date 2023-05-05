@@ -16,7 +16,7 @@ export default function Layout({children}:any) {
     return (
         <div className="w-full h-full flex flex-col">
             <Head>
-                <title>RiskThinking.AI Code Test</title>
+                <title>RRTAI Code Test</title>
             </Head>
             <Header />
             <main className="flex-1 w-full h-full">{children}</main>

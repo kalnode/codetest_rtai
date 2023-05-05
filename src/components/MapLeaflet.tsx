@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef} from 'react'
 import { useAppStore } from "../stores/app"
-import { RISKAI_DATA } from "../stores/app"
+import { RTAI_DATA } from "../stores/app"
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { debounce } from "../scripts/utils"
@@ -21,7 +21,7 @@ let iconSVG = `<svg width="100%" height="100%" fill="currentColor" version="1.1"
 /*
 const baseIcon = L.DivIcon.extend({
     html: "<div style='color:red'>"+iconSVG+"</div>",
-    className: "mapMarker_riskai",
+    className: "mapMarker_rtai",
     iconSize: [28,28] //new L.Point(40, 40)
 })
 const iconsIdeal = {
@@ -34,19 +34,19 @@ const iconsIdeal = {
 const icons = {
     red: new L.DivIcon({
         html: "<div style='color:red'>"+iconSVG+"</div>",
-        className: "mapMarker_riskai",
+        className: "mapMarker_rtai",
         iconSize: [28,28] //new L.Point(40, 40)
     }),
 
     orange: new L.DivIcon({
         html: "<div style='color:orange'>"+iconSVG+"</div>",
-        className: "mapMarker_riskai",
+        className: "mapMarker_rtai",
         iconSize: [28,28] //new L.Point(40, 40)
     }),
 
     yellow: new L.DivIcon({
         html: "<div style='color:yellow'>"+iconSVG+"</div>",
-        className: "mapMarker_riskai",
+        className: "mapMarker_rtai",
         iconSize: [28,28] //new L.Point(40, 40)
     })
 }
@@ -145,7 +145,7 @@ function clearLayer() {
     layer_markers.clearLayers()
 }
 
-function createMarkers(newData: RISKAI_DATA[]) {
+function createMarkers(newData: RTAI_DATA[]) {
 
     if (newData && newData.length > 0) {
 
@@ -153,7 +153,7 @@ function createMarkers(newData: RISKAI_DATA[]) {
 
         clearLayer()
 
-        newData.forEach((value: RISKAI_DATA) => {
+        newData.forEach((value: RTAI_DATA) => {
 
             if (value) {
 
